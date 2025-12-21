@@ -1,0 +1,29 @@
+{
+  "name": "fera-yahya-wedding-astro",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Yahya Zulfikri",
+    "email": "zulfikriyahya18@gmail.com",
+    "url": "https://feyaya.com"
+  },
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/react": "^4.4.2",
+    "@tailwindcss/vite": "^4.1.18",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "astro": "^5.16.6",
+    "lucide-react": "^0.469.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwindcss": "^4.0.0"
+  }
+}

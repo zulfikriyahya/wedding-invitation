@@ -1,0 +1,150 @@
+@import "tailwindcss";
+
+/* 
+  PENTING: Override default dark mode Tailwind v4.
+  Secara default v4 menggunakan 'media' (system preference).
+  Baris ini memaksanya menggunakan class .dark pada elemen root.
+*/
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Colors */
+  --color-primary: #0f172a;
+  --color-secondary: #fafaf9;
+  --color-accent: #7dd3fc;
+  --color-accentDark: #075985;
+  --color-darkBg: #020617;
+  --color-darkSurface: #0f172a;
+
+  /* Fonts */
+  --font-serif: "Cormorant Garamond", serif;
+  --font-sans: "Outfit", sans-serif;
+
+  /* Animations */
+  --animate-subtle-zoom: subtleZoom 20s infinite alternate;
+  --animate-reveal: reveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-soft: pulseSoft 4s ease-in-out infinite;
+  --animate-spin-slow: spin 8s linear infinite; /* Tambahan untuk Envelope */
+
+  /* Keyframes */
+  @keyframes subtleZoom {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.08);
+    }
+  }
+  @keyframes reveal {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes pulseSoft {
+    0%,
+    100% {
+      opacity: 0.8;
+    }
+    50% {
+      opacity: 0.3;
+    }
+  }
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .tracking-luxury {
+    letter-spacing: 0.4em;
+  }
+  .tracking-editorial {
+    letter-spacing: 0.15em;
+  }
+}
+
+@layer base {
+  /* Default transisi warna untuk semua elemen agar smooth saat ganti tema */
+  *,
+  ::before,
+  ::after {
+    @apply border-gray-200 dark:border-white/10;
+  }
+
+  body {
+    @apply bg-secondary text-slate-800 transition-colors duration-1000 ease-out antialiased leading-relaxed;
+  }
+
+  /* Style spesifik saat Dark Mode aktif */
+  .dark body {
+    @apply bg-darkBg text-slate-100;
+  }
+
+  h1,
+  h2,
+  h3,
+  .font-serif {
+    font-family: "Cormorant Garamond", serif;
+  }
+}
+
+/* Custom Classes */
+.grain::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.015;
+  pointer-events: none;
+  z-index: 9999;
+}
+.dark .grain::before {
+  opacity: 0.03;
+}
+
+.editorial-card {
+  @apply bg-white transition-all duration-700 border border-slate-900/5 shadow-sm;
+}
+.dark .editorial-card {
+  @apply bg-darkSurface border-white/5 shadow-[0_10px_40px_rgba(0,0,0,0.2)];
+}
+
+.frosted-glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.dark .frosted-glass {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.reveal-active {
+  animation: reveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
